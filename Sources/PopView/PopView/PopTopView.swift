@@ -14,7 +14,6 @@ struct PopTopView: PopContentView {
     
     @ObservedObject private var manager: PopManager = .shared
     
-    
     func createContent() -> some View {
         ZStack(alignment: .top) {
             if isMask { createBackground() } else { Color.clear }

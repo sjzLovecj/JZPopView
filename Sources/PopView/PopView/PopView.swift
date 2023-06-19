@@ -16,6 +16,7 @@ struct PopView: View {
                 createPop(index)
             }
         }
+        .ignoresSafeArea()
     }
 }
 

@@ -44,7 +44,7 @@ extension PopCenterView {
         maskBackgroundColor
             .ignoresSafeArea()
             .opacity(animationManger.isShow ? 1.0 : 0.0)
-            .animation(config.transitionAnimation(), value: animationManger.isShow)
+            .animation(.easeIn(duration: 0.2), value: animationManger.isShow)
             .padding(maskPaddingEdge)
             .onTapGesture { if tapOutsideCloses { popView.dismiss(popView) } }
     }

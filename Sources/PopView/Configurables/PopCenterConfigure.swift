@@ -16,7 +16,6 @@ public struct PopCenterConfigure: Configurable {
     // 点击弹窗
     var tapOutsideCloses: Bool = false
     
-    
     // MARK: - popView设置
     // 是否忽略安全区域
     var horizontalPadding: CGFloat = 10

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TextPop: CenterPop {
+struct TextPop: TopPop {
     
     var text: String
     
@@ -25,11 +25,15 @@ struct TextPop: CenterPop {
         }
     }
     
-    func configurePop(config: PopCenterConfigure) -> PopCenterConfigure {
+    func configurePop(config: PopTopConfigure) -> PopTopConfigure {
         config
             .maskBackgroundColor(Color.gray.opacity(0.5))
-            .isAutoHidden(true)
+            .tapOutsideCloses(true)
+            .animationDuration(0.3)
             .horizontalPadding(20)
+            .maskPaddingEdge(EdgeInsets(top: 0, leading: 100, bottom: 0, trailing: 0))
+//            .bottomPadding(30)
+            .popTopPadding(30)
             .animation { duration in
                 .linear(duration: duration)
             }

@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-extension View {
-    func initPopView() -> some View {
-        self.overlay {
-            PopView()
-        }
-    }
-}
+//extension View {
+//    func initPopView() -> some View {
+//        self.overlay {
+//            PopView()
+//        }
+//    }
+//}
 
 // MARK: - 上下布局
 extension View {

@@ -66,10 +66,10 @@ public extension PopManager {
 public extension PopManager {
     static func show(_ pop: some Pop) {
         DispatchQueue.main.async {
-            if shared.popWindow == nil {
-                shared.createPopWindow()
-            }else if let popWindow = shared.popWindow {
+            if let popWindow = shared.popWindow {
                 popWindow.isHidden = false
+            }else {
+                shared.createPopWindow()
             }
             
             if let popView = pop as? AnyPop<PopCenterConfigure> {

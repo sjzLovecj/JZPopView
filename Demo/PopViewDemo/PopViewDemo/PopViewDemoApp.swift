@@ -12,7 +12,6 @@ struct PopViewDemoApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .initPopView()
         }
     }
 }

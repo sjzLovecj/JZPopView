@@ -18,10 +18,8 @@ public class PopManager: ObservableObject {
     private init() { }
     
     var popWindow: UIWindow?
-    var popHosting: UIViewController?
-    
+
     @Published var popViews: [any PopContentView] = []
-    
     
     @Published var windowWidth: CGFloat = 0
     @Published var windowHeight: CGFloat = 0
@@ -68,7 +66,7 @@ public extension PopManager {
 public extension PopManager {
     static func show(_ pop: some Pop) {
         DispatchQueue.main.async {
-            if let _ = Define.shared.keyWindow?.rootViewController as? UIViewController, shared.popWindow == nil {
+            if shared.popWindow == nil {
                 shared.createPopWindow()
             }else if let popWindow = shared.popWindow {
                 popWindow.isHidden = false
@@ -92,16 +90,15 @@ public extension PopManager {
             popWindow = UIWindow(windowScene: windowScene)
             
             popWindow?.windowLevel = .statusBar
-            popWindow?.backgroundColor = UIColor.red
+            popWindow?.backgroundColor = .clear
 
             windowWidth = popWindow?.frame.size.width ?? 0
             windowHeight = popWindow?.frame.size.height ?? 0
             
             popWindow?.rootViewController = HostingController(rootView: PopView())
-            popHosting?.view.backgroundColor = UIColor.clear
+            popWindow?.rootViewController?.view.backgroundColor = UIColor.clear
             
             popWindow?.isHidden = false
-            
         }
     }
 }

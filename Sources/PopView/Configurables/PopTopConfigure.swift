@@ -62,7 +62,6 @@ public extension PopTopConfigure {
     @discardableResult
     func popTopPadding(_ value: CGFloat) -> Self { changing(path: \.popTopPadding, to: value) }
     
-    
     // 是否自动隐藏
     @discardableResult
     func isAutoHidden(_ value: Bool) -> Self { changing(path: \.isAutoHidden, to: value) }

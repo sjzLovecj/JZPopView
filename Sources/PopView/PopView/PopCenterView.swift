@@ -11,12 +11,14 @@ struct PopCenterView: PopContentView {
     var popView: AnyPop<PopCenterConfigure>
     @ObservedObject var animationManger: AnimationManger = AnimationManger()
     
+    @ObservedObject private var manager: PopManager = .shared
+    
     func createContent() -> some View {
         ZStack(alignment: .center, content: {
             if isMask { createBackground() }
             configPopView()
         })
-        .frame(width: Define.screenWidth, height: Define.screenHeight)
+        .frame(width: manager.windowWidth, height: manager.windowHeight)
         .onAppear { show() }
     }
 }

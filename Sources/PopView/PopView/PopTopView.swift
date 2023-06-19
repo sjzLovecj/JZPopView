@@ -12,15 +12,17 @@ struct PopTopView: PopContentView {
     @ObservedObject var animationManger: AnimationManger = AnimationManger()
     @State var popHeight: CGFloat = 0
     
+    @ObservedObject private var manager: PopManager = .shared
+    
+    
     func createContent() -> some View {
         ZStack(alignment: .top) {
-            if isMask { createBackground() }
-            else { Color.clear }
-            
+            if isMask { createBackground() } else { Color.clear }
             configPopView()
         }
-        .frame(width: Define.screenWidth, height: Define.screenHeight)
+        .frame(width: manager.windowWidth, height: manager.windowHeight)
         .onAppear {
+            // 延迟0.01秒，因为不延迟，开始直接显示，不展示动画
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                 show()
             }

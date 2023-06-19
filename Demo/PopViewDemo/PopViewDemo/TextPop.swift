@@ -33,7 +33,7 @@ struct TextPop: TopPop {
             .horizontalPadding(20)
             .maskPaddingEdge(EdgeInsets(top: 0, leading: 100, bottom: 0, trailing: 0))
 //            .bottomPadding(30)
-            .popTopPadding(30)
+            .popTopPadding(50)
             .animation { duration in
                 .linear(duration: duration)
             }

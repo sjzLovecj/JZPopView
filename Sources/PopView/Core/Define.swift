@@ -7,10 +7,23 @@
 
 import SwiftUI
 
-struct Define {
+class Define: ObservableObject {
+    static let shared: Define = Define()
+    
     // 获取 windowScene
-    static var windowScene: UIWindowScene? { UIApplication.shared.connectedScenes.first as? UIWindowScene }
-    static var screenWidth: CGFloat { windowScene?.screen.bounds.width ?? 0 }
-    static var screenHeight: CGFloat { windowScene?.screen.bounds.height ?? 0 }
-    static var safeArea: UIEdgeInsets { windowScene?.keyWindow?.safeAreaInsets ?? .zero }
+    var windowScene: UIWindowScene? { UIApplication.shared.connectedScenes.first as? UIWindowScene }
+    var keyWindow: UIWindow? { windowScene?.windows.first { $0.isKeyWindow } }
+    var safeArea: UIEdgeInsets { windowScene?.keyWindow?.safeAreaInsets ?? .zero }
+    
+    var screenWidth: CGFloat { windowScene?.screen.bounds.width ?? 0 }
+    var screenHeight: CGFloat { windowScene?.screen.bounds.height ?? 0 }
 }
+
+//extension Define {
+//    func changeSize() {
+//        NotificationCenter.default
+//            .publisher(for: NSNotification.didResizeNotification)
+//    }
+//}
+
+

@@ -11,7 +11,7 @@ public struct PopCenterConfigure: Configurable {
     // MARK: - mask蒙版设置，蒙版默认是ignoresSafeArea
     // 如果想设置蒙版距离边界距离，请设置maskPaddingEdge
     var isMask: Bool = true
-    var maskBackgroundColor: Color = Color.blue.opacity(0.5)
+    var maskBackgroundColor: Color = Color.black.opacity(0.5)
     var maskPaddingEdge: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
     // 点击弹窗
     var tapOutsideCloses: Bool = false

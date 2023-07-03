@@ -14,7 +14,7 @@ public class AnimationManger: ObservableObject {
 
 // 设置单例
 public class PopManager: ObservableObject {
-    static let shared: PopManager = PopManager()
+    public static let shared: PopManager = PopManager()
     private init() { }
     
     var popWindow: UIWindow?
@@ -40,18 +40,35 @@ public extension PopManager {
         }
     }
     
-    static func dismiss(_ pop: some Pop) {
+    static func dismiss(_ pop: any Pop) {
         DispatchQueue.main.async {
             var id: UUID?
-            if let popView = pop as? AnyPop<PopCenterConfigure> {
+            if let popView = pop as? (any CenterPop) {
                 id = popView.id
-            }else if let popView = pop as? AnyPop<PopBottomConfigure> {
+            }else if let popView = pop as? (any BottomPop) {
                 id = popView.id
-            }else if let popView = pop as? AnyPop<PopTopConfigure> {
+            }else if let popView = pop as? (any TopPop) {
                 id = popView.id
             }
             
-            if let id, let popView = shared.popViews.first(where: { $0.id == id }) {
+            if let id {
+                let popView = shared.popViews.first(where: { $0.id == id })
+                if let popView {
+                    popView.dissmis {
+                        DispatchQueue.main.async {
+                            shared.popViews.removeAll { $0.id == popView.id }
+                            if shared.popViews.isEmpty { shared.popWindow?.isHidden = true }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    static func dismiss(id: UUID) {
+        DispatchQueue.main.async {
+            let popView = shared.popViews.first(where: { $0.id == id })
+            if let popView {
                 popView.dissmis {
                     DispatchQueue.main.async {
                         shared.popViews.removeAll { $0.id == popView.id }
@@ -101,6 +118,7 @@ public extension PopManager {
             popWindow?.isHidden = false
         }
     }
+    
 }
 
 

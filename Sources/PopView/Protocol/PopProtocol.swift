@@ -21,14 +21,15 @@ public protocol Pop: View {
 }
 
 public extension Pop {
-    var id: UUID { UUID() }   //.init(describing: Self.self) }
     var body: V { createContent() }
     func configurePop(config: Config) -> Config { config }
     
     // 显示
     func show() { PopManager.show(AnyPop<Config>(self)) }
+    
     // 隐藏
     func dismiss() { PopManager.dismiss() }
+    func dismiss(id: UUID) { PopManager.dismiss(id: id) }
     func dismiss(_ pop: any Pop) { PopManager.dismiss(pop) }
     func dismissAll() {}
 }

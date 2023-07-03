@@ -28,7 +28,7 @@ extension PopCenterView {
         animationManger.isShow = true
         if config.isAutoHidden {
             DispatchQueue.main.asyncAfter(deadline: .now() + autoHiddenAfter) {
-                popView.dismiss(popView)
+                PopManager.dismiss(id: popView.id)
             }
         }
     }
@@ -48,7 +48,7 @@ extension PopCenterView {
             .opacity(animationManger.isShow ? 1.0 : 0.0)
             .animation(.easeIn(duration: 0.2), value: animationManger.isShow)
             .padding(maskPaddingEdge)
-            .onTapGesture { if tapOutsideCloses { popView.dismiss(popView) } }
+            .onTapGesture { if tapOutsideCloses { PopManager.dismiss(id: popView.id) } }
     }
     
     func configPopView() -> some View {
